@@ -8,7 +8,7 @@
 
 Были написаны два решения на Go и на C: [standard.go](https://github.com/StanislavVolodarskiy/c-go-stdout-performance/blob/main/standard.go), [standard.c](https://github.com/StanislavVolodarskiy/c-go-stdout-performance/blob/main/standard.c). Оба решения использовали буфер *64KB* для `stdout`. Оба решения написаны с использованием стандартных средств языков и библиотек. Оказалось что решение на Go заметно опережает решение на C.
 
-Если принять время работы программа на Go на четверть быстрее программы на C:
+Время работы программы на Go на четверть меньше такого же времени для программы на C:
 
 >     $ make standard-go standard-c
 >     go build -o standard-go standard.go
@@ -38,7 +38,7 @@
 >     user 21.73
 >     sys 2.44
 
-Собственно вопрос: почему так происходит?
+Собственно вопрос: почему так происходит? Почему стандартный код на C медленее станартного кода на Go?
 
 ## Ответ
 
