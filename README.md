@@ -1,0 +1,1 @@
+# c-go-stdout-performance
