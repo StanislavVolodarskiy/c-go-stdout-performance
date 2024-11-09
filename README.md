@@ -38,7 +38,7 @@
 >     user 21.73
 >     sys 2.44
 
-Собственно вопрос: почему так происходит? Почему стандартный код на C медленее станартного кода на Go?
+Собственно вопрос: почему так происходит? Почему стандартный код на C медленее стандартного кода на Go?
 
 ## Ответ
 
@@ -48,7 +48,7 @@
 
 В Go буфер &ndash; отдельный объект, который не обязан работать в многопоточной среде. Вызов `buffer.Write` ничего не блокирует, только переписывает данные в память буфера. Когда буфер заполняется, выполняется запись в файл и эта запись синхронная, то есть какая-то блокировка есть. Но в случае с C блокировка вызывается каждые десять байт (это длина одной строки), а в случае с Go &ndash; каждые *64KB*, то есть в шесть с половиной тысяч раз реже. Что позволяет Go обойти C.
 
-Программа с буфером написана на стандартном C и состоит из трёх файлов: сама программа [buffered.c](https://github.com/StanislavVolodarskiy/c-go-stdout-performance/buffered.c), заголовок и реализация буфера [buffer_t.h](https://github.com/StanislavVolodarskiy/c-go-stdout-performance/buffer_t.h), [buffer_t.c](https://github.com/StanislavVolodarskiy/c-go-stdout-performance/buffer_t.c).
+Программа с буфером написана на стандартном C и состоит из трёх файлов: сама программа [buffered.c](https://github.com/StanislavVolodarskiy/c-go-stdout-performance/blob/main/buffered.c), заголовок и реализация буфера [buffer_t.h](https://github.com/StanislavVolodarskiy/c-go-stdout-performance/blob/main/buffer_t.h), [buffer_t.c](https://github.com/StanislavVolodarskiy/c-go-stdout-performance/blob/main/buffer_t.c).
 
 Время работы программы на Go на четверть больше такого же времени для программы на C с буфером:
 
