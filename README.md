@@ -52,6 +52,9 @@
 
 Время работы программы на Go на четверть больше такого же времени для программы на C с буфером:
 
+>     $ make buffered-c
+>     gcc -o buffered-c -O3 -std=c11 -pedantic -Wall -Wextra -Werror -Wwrite-strings -Wconversion -I. buffer_t.c buffered.c
+>     
 >     $ time -p echo 8 | ./standard-go | wc -l
 >     100000000
 >     real 1.45
